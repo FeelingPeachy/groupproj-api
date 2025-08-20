@@ -9,6 +9,7 @@ require('dotenv').config();
 function getPokemonByName = async (req, res) => {
 
     
+
     // Get the Pokemon name from the request parameters
  
     // Find the Pokemon by name using await and findone function
