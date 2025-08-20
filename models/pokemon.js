@@ -13,6 +13,18 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        height: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        weight: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        base_experience: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
