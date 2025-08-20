@@ -5,23 +5,25 @@ require('dotenv').config();
 // process.env.API_BASE_URL which is: https://pokeapi.co/api/v2
 
 
-// Get a Pokemon by name
+// Get a Pokemon by name from the external API using the api base url
 function getPokemonByName = async (req, res) => {
 
-    
 
     // Get the Pokemon name from the request parameters
- 
-    // Find the Pokemon by name using await and findone function
+    
+    // try to fetch the Pokemon from the external API
    
-    // Check if the Pokemon exists
+        // Check if the response is successful]
+        
+        //when fetching the repsonse we want to extract the  pokemons name, height , weight , base expirience , active 
+  
+        // If the Pokemon is found, return it in the response
+  
+        // Add any additional processing or transformation of the Pokemon data here
+       
 
-    // if it does not exist return status 404
-   
-    //return the pokemon 
-
-    //catch the error when fetching the pokemon
- 
+        // Handle errors
+    
 };
 
 // Add a new Pokemon to the deck
