@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
     const Pokemon = sequelize.define("Pokemon", {
         id: {
             type: DataTypes.INTEGER,
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         active: {
             type: DataTypes.BOOLEAN,
-            defaultValue: 
+            defaultValue: false
         }
     });
 
