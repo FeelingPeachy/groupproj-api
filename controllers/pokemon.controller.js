@@ -64,9 +64,9 @@ const addPokemonToDeck = async (req, res) => {
         });
         
     } catch (err) {
-        // catch errors and return status 500
+        // catch errors and return status 404
         console.error(err.message);
-        return res.status(500).json({ error: 'Failed to add Pokemon to deck' });
+        return res.status(404).json({ error: 'Failed to add Pokemon to deck' });
     }
 };
   
