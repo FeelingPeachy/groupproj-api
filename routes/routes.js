@@ -49,7 +49,7 @@ router.get('/pokemon/:name', logger, agent, PokemonController.getPokemonByName);
 router.post('/pokedeck', logger, agent, PokemonController.addPokemonToDeck);
 
 // get /active-deck
-// router.get('/active-deck', PokemonController.getActiveDeck);
+router.get('/active-deck', PokemonController.getActiveDeck);
 
 /**
  * @swagger
