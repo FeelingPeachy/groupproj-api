@@ -1,4 +1,4 @@
-export default (sequelize, DataTypes) => {
+module.exports =  (sequelize, DataTypes) => {
     const Pokemon = sequelize.define("Pokemon", {
         id: {
             type: DataTypes.INTEGER,

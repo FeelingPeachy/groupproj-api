@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/pokemonController.controller');
+const PokemonController = require('../controllers/pokemon.controller');
 
 // this routes folder is supposed to be for pokemons
 
@@ -12,13 +12,13 @@ router.get('/pokemon/:name', PokemonController.getPokemonByName);
 
 // POST (ADD) to pokedeck
 
-router.post('/pokedeck', PokemonController.addPokemonToDeck);
+// router.post('/pokedeck', PokemonController.addPokemonToDeck);
 
-// get /active-deck
-router.get('/active-deck', PokemonController.getActiveDeck);
+// // get /active-deck
+// router.get('/active-deck', PokemonController.getActiveDeck);
 
-// delete-from-deck/:id
-router.delete('/delete-from-deck/:id', PokemonController.removeFromDeck);
+// // delete-from-deck/:id
+// router.delete('/delete-from-deck/:id', PokemonController.removeFromDeck);
 
 
 module.exports = router;
