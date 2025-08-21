@@ -132,7 +132,7 @@ const getActiveDeck = async (req, res) => {
           }
 
           // Update the active status
-          pokemon.active = active.active;
+          pokemon.active = active;
           await pokemon.save();
 
           // Return a success message
