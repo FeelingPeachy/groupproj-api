@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const PokemonController = require('../controllers/pokemon.controller');
-
+const PokemonController = require('../controllers/pokemon.controller.js');
+// Correctly import named middlewares from the middleware file
+const { logger, agent } = require('../middleware/middleware.js');
 // this routes folder is supposed to be for pokemons
 
 // -------------------------TODO: Implement Pokemon routes----------------------------
 
 // get /pokemon/:name
 
-router.get('/pokemon/:name', PokemonController.getPokemonByName);
+router.get('/pokemon/:name', logger, agent, PokemonController.getPokemonByName);
 
 // POST (ADD) to pokedeck
-router.post('/pokedeck', PokemonController.addPokemonToDeck);
+router.post('/pokedeck', logger, agent, PokemonController.addPokemonToDeck);
 
 // get /active-deck
 // router.get('/active-deck', PokemonController.getActiveDeck);
