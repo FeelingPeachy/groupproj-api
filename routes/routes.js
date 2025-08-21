@@ -73,7 +73,7 @@ router.post('/pokedeck', logger, agent, PokemonController.addPokemonToDeck);
  *                   active:
  *                     type: boolean
  */
-router.get('/active-deck', PokemonController.getActiveDeck);
+router.get('/active-deck', logger, agent, PokemonController.getActiveDeck);
 
 /**
  * @swagger
