@@ -112,6 +112,6 @@ const addPokemonToDeck = async (req, res) => {
 module.exports = { 
     getPokemonByName,
     addPokemonToDeck,
-    getActiveDeck
+    // getActiveDeck
     };
 
