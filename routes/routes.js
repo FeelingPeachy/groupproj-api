@@ -24,13 +24,50 @@ const { logger, agent } = require('../middleware/middleware.js');
  */
 router.get('/pokemon/:name', logger, agent, PokemonController.getPokemonByName);
 
-// POST (ADD) to pokedeck
+/**
+ * @swagger
+ * /pokedeck:
+ *   post:
+ *     summary: Add a Pokemon to the deck
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               type:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Pokemon added to deck
+ *       400:
+ *         description: Invalid input
+ */
 router.post('/pokedeck', logger, agent, PokemonController.addPokemonToDeck);
 
 // get /active-deck
-router.get('/active-deck', PokemonController.getActiveDeck);
+// router.get('/active-deck', PokemonController.getActiveDeck);
 
-// delete-from-deck/:id
+/**
+ * @swagger
+ * /delete-from-deck/{id}:
+ *   delete:
+ *     summary: Remove a Pokemon from the deck by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Pokemon removed from deck
+ *       404:
+ *         description: Pokemon not found
+ */
 router.delete('/delete-from-deck/:id', logger, agent, PokemonController.removeFromDeck);
 
 router.patch('/update-active-status/:id', logger, agent, PokemonController.updateActiveStatus);
