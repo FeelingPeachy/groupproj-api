@@ -115,11 +115,39 @@ const getActiveDeck = async (req, res) => {
   };
 
 
+  //update the active column to either true or false
+  const updateActiveStatus = async (req, res) => {
+      const id = req.params.id;
+      const active = req.body;
+
+      try {
+          // Find the Pokemon by ID
+          const pokemon = await Pokemon.findByPk(id);
+
+          // Check if the Pokemon exists
+          if (!pokemon) {
+              return res.status(404).json({ error: 'Pokemon not found' });
+          }
+
+          // Update the active status
+          pokemon.active = active;
+          await pokemon.save();
+
+          // Return a success message
+          return res.status(200).json({ message: 'Pokemon active status updated successfully' });
+      } catch (err) {
+          // Handle errors
+          console.error(err.message);
+          return res.status(500).json({ error: 'Failed to update Pokemon active status' });
+      }
+  };
+
 module.exports = { 
     getPokemonByName,
     addPokemonToDeck,
     getActiveDeck,
     removeFromDeck,
+    updateActiveStatus
     // getActiveDeck
     };
 

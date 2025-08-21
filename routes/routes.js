@@ -33,4 +33,6 @@ router.get('/active-deck', PokemonController.getActiveDeck);
 // delete-from-deck/:id
 router.delete('/delete-from-deck/:id', logger, agent, PokemonController.removeFromDeck);
 
+router.patch('/update-active-status/:id', logger, agent, PokemonController.updateActiveStatus);
+
 module.exports = router;
