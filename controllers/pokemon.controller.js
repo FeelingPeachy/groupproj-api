@@ -117,8 +117,10 @@ const getActiveDeck = async (req, res) => {
 
   //update the active column to either true or false
   const updateActiveStatus = async (req, res) => {
+
       const id = req.params.id;
       const active = req.body;
+      console.log(active)
 
       try {
           // Find the Pokemon by ID
@@ -130,7 +132,7 @@ const getActiveDeck = async (req, res) => {
           }
 
           // Update the active status
-          pokemon.active = active;
+          pokemon.active = active.active;
           await pokemon.save();
 
           // Return a success message
@@ -148,6 +150,5 @@ module.exports = {
     getActiveDeck,
     removeFromDeck,
     updateActiveStatus
-    // getActiveDeck
     };
 
