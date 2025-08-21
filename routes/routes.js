@@ -7,8 +7,21 @@ const { logger, agent } = require('../middleware/middleware.js');
 
 // -------------------------TODO: Implement Pokemon routes----------------------------
 
-// get /pokemon/:name
-
+/**
+ * @swagger
+ * /pokemon/{name}:
+ *   get:
+ *     summary: Get a Pokemon by name
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successfully fetched the pokemon
+ */
 router.get('/pokemon/:name', logger, agent, PokemonController.getPokemonByName);
 
 // POST (ADD) to pokedeck
