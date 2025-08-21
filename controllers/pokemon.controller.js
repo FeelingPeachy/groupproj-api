@@ -1,6 +1,6 @@
 require('dotenv').config();
 const axios = require('axios');
-const { Pokemon } = require('../models/pokemon'); 
+const Pokemon = require('../models/pokemon'); 
 
 // Get a Pokemon by name from the external API using the api base url
 const getPokemonByName = async (req, res) => {
@@ -14,11 +14,12 @@ const getPokemonByName = async (req, res) => {
       // Check if the response is successful
       if (response.status === 200) {
         const data = response.data;
-  
+     
         // when fetching the response we want to extract:
         // name, height, weight, base_experience, active
         const pokemon = {
           name: data.name,
+          type: data.types[0].type.name,
           height: data.height,
           weight: data.weight,
           base_experience: data.base_experience,
@@ -43,15 +44,17 @@ const getPokemonByName = async (req, res) => {
 const addPokemonToDeck = async (req, res) => {
     try {
         // // Get the Pokemon details from the request body
-        const { name, height, weight, base_experience, active } = req.body;
+        const { name, type, height, weight, base_experience, active } = req.body;
+        console.log(req.body)
 
         // Create a new Pokemon instance using await and the .create function
         const addPokemon = await Pokemon.create({
-            name,
-            height,
-            weight,
-            base_experience,
-            active,
+            name : name,
+            type: type,
+            height: height,
+            weight : weight,
+            base_experience : base_experience,
+            active: active,
             });
         
         // return status of 201 created
@@ -69,18 +72,21 @@ const addPokemonToDeck = async (req, res) => {
   
 
 // Get the active deck of Pokemon
-// const getActiveDeck = async (req, res) => {
-//     // Fetch the active deck from the database
+const getActiveDeck = async (req, res) => {
 
-//     // Use findAll to get all Pokemon in the active deck
+    // Fetch the active deck from the database
+    try {
+        
+        // Use findAll to get all Pokemon in the active deck
+        const activeDeck = await Pokemon.findAll({ where: { active: true },});
+        return res.status(200).json(activeDeck);
     
-//     // Log the fetched active deck
-    
-//     //return response
-    
-//     //catch any errors
- 
-// };
+    } 
+    //catch any errors
+    catch (err) {
+        return res.status(500).json({ error: 'Failed to fetch active deck' });
+    } 
+};
 
 // function removeFromDeck = async (req, res) => {
 //     // Remove a Pokemon from the active deck
@@ -112,6 +118,6 @@ const addPokemonToDeck = async (req, res) => {
 module.exports = { 
     getPokemonByName,
     addPokemonToDeck,
-    // getActiveDeck
+    getActiveDeck
     };
 
