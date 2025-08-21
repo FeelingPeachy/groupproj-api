@@ -88,36 +88,38 @@ const getActiveDeck = async (req, res) => {
     } 
 };
 
-// function removeFromDeck = async (req, res) => {
-//     // Remove a Pokemon from the active deck
 
-//     //get the id from the request parameters
-  
+  // Remove a Pokemon from the active deck
+  const removeFromDeck = async (req, res) => {
+      const id = req.params.id;
 
-//   // Find the Pokemon by ID
+      try {
+          // Find the Pokemon by ID
+          const pokemon = await Pokemon.findByPk(id);
 
-//     //use findByPk to get the Pokemon and use await
-  
+          // Check if the Pokemon exists
+          if (!pokemon) {
+              return res.status(404).json({ error: 'Pokemon not found' });
+          }
 
-//     // Check if the Pokemon exists
-    
-//         //if not return status 404
-   
-//     //await the destroy method
- 
-//     // Return a success message
-   
-   
-//     // Log the removal action
-  
-//     // Handle errors
-   
-// };
+          // Remove the Pokemon from the deck
+          await pokemon.destroy();
+
+          // Return a success message
+          return res.status(200).json({ message: 'Pokemon removed from deck successfully' });
+      } catch (err) {
+          // Handle errors
+          console.error(err.message);
+          return res.status(500).json({ error: 'Failed to remove Pokemon from deck' });
+      }
+  };
 
 
 module.exports = { 
     getPokemonByName,
     addPokemonToDeck,
-    getActiveDeck
+    getActiveDeck,
+    removeFromDeck,
+    // getActiveDeck
     };
 
