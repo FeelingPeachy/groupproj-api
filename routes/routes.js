@@ -11,10 +11,9 @@ const PokemonController = require('../controllers/pokemon.controller');
 router.get('/pokemon/:name', PokemonController.getPokemonByName);
 
 // POST (ADD) to pokedeck
+router.post('/pokedeck', PokemonController.addPokemonToDeck);
 
-// router.post('/pokedeck', PokemonController.addPokemonToDeck);
-
-// // get /active-deck
+// get /active-deck
 // router.get('/active-deck', PokemonController.getActiveDeck);
 
 // // delete-from-deck/:id

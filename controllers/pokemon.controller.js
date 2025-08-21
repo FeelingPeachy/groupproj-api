@@ -22,7 +22,7 @@ const getPokemonByName = async (req, res) => {
           height: data.height,
           weight: data.weight,
           base_experience: data.base_experience,
-          active: true, // default to active if fetched
+          active: true,
         };
   
         // If the Pokemon is found, return it in the response
@@ -38,6 +38,80 @@ const getPokemonByName = async (req, res) => {
       return res.status(500).json({ error: 'Failed to fetch Pokemon' });
     }
   };
+
+// Add a new Pokemon to the deck
+const addPokemonToDeck = async (req, res) => {
+    try {
+        // // Get the Pokemon details from the request body
+        const { name, height, weight, base_experience, active } = req.body;
+
+        // Create a new Pokemon instance using await and the .create function
+        const addPokemon = await Pokemon.create({
+            name,
+            height,
+            weight,
+            base_experience,
+            active,
+            });
+        
+        // return status of 201 created
+        return res.status(201).json({
+            "message" : "pokemon succsesfully added to the pokedexkc",
+            "pokemon" : addPokemon
+        });
+        
+    } catch (err) {
+        // catch errors and return status 500
+        console.error(err.message);
+        return res.status(500).json({ error: 'Failed to add Pokemon to deck' });
+    }
+};
   
 
-module.exports = { getPokemonByName };
+// Get the active deck of Pokemon
+// const getActiveDeck = async (req, res) => {
+//     // Fetch the active deck from the database
+
+//     // Use findAll to get all Pokemon in the active deck
+    
+//     // Log the fetched active deck
+    
+//     //return response
+    
+//     //catch any errors
+ 
+// };
+
+// function removeFromDeck = async (req, res) => {
+//     // Remove a Pokemon from the active deck
+
+//     //get the id from the request parameters
+  
+
+//   // Find the Pokemon by ID
+
+//     //use findByPk to get the Pokemon and use await
+  
+
+//     // Check if the Pokemon exists
+    
+//         //if not return status 404
+   
+//     //await the destroy method
+ 
+//     // Return a success message
+   
+   
+//     // Log the removal action
+  
+//     // Handle errors
+   
+// };
+
+
+module.exports = { 
+    getPokemonByName,
+    addPokemonToDeck,
+    getActiveDeck
+    };
+
