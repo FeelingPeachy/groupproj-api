@@ -30,8 +30,7 @@ router.post('/pokedeck', logger, agent, PokemonController.addPokemonToDeck);
 // get /active-deck
 // router.get('/active-deck', PokemonController.getActiveDeck);
 
-// // delete-from-deck/:id
-// router.delete('/delete-from-deck/:id', PokemonController.removeFromDeck);
-
+// delete-from-deck/:id
+router.delete('/delete-from-deck/:id', logger, agent, PokemonController.removeFromDeck);
 
 module.exports = router;
