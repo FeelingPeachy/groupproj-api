@@ -49,6 +49,30 @@ router.get('/pokemon/:name', logger, agent, PokemonController.getPokemonByName);
 router.post('/pokedeck', logger, agent, PokemonController.addPokemonToDeck);
 
 // get /active-deck
+/**
+ * @swagger
+ * /active-deck:
+ *   get:
+ *     summary: Get all active Pokemon in the deck
+ *     responses:
+ *       200:
+ *         description: Successfully fetched active deck
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                   name:
+ *                     type: string
+ *                   type:
+ *                     type: string
+ *                   active:
+ *                     type: boolean
+ */
 router.get('/active-deck', PokemonController.getActiveDeck);
 
 /**
